@@ -11,10 +11,10 @@
 
 namespace BaseFramework
 {
-	class GameBase
+	class Game
 	{
 	public: 
-		GameBase(int width, int height, std::string title);
+		Game(int width, int height, std::string title);
 
 		void run();
 

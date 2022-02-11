@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "Game/GameBase.h"
+#include "Game/Game.h"
 using namespace BaseFramework;
 
 int main()
@@ -18,7 +18,7 @@ int main()
 		window.display();
 	}
 	return 0;*/
-	GameBase game(1280, 720, "Game");
+	Game game(1280, 720, "Game");
 	game.run();
 	return 0;
 }

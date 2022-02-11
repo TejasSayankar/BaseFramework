@@ -1,15 +1,19 @@
-#include "GameBase.h"
+#include "Game.h"
+#include "../GameState.h"
 
 namespace BaseFramework
 {
-	GameBase::GameBase(int width, int height, std::string title)
+	Game::Game(int width, int height, std::string title)
 	{
 		_window.create(sf::VideoMode(width, height), title);
 		_keyboard = std::make_unique<Keyboard>();
 		_mouse = std::make_unique<Mouse>();
+
+		// Start game state
+		pushState(std::make_unique<GameState>(*this));
 	}
 
-	void GameBase::run()
+	void Game::run()
 	{
 		sf::Clock timer;
 		float newTime, deltaTime;
@@ -40,36 +44,37 @@ namespace BaseFramework
 		}
 	}
 
-	void GameBase::pushState(std::unique_ptr<StateBase> state)
+	void Game::pushState(std::unique_ptr<StateBase> state)
 	{
 		_states.push(std::move(state));
 	}
 
-	void GameBase::popState()
+	void Game::popState()
 	{
 		_shouldPop = true;
 	}
 
-	void GameBase::exitGame()
+	void Game::exitGame()
 	{
+
 	}
 
-	Keyboard& GameBase::getKeyboard()
+	Keyboard& Game::getKeyboard()
 	{
 		return *_keyboard;
 	}
 
-	Mouse& GameBase::getMouse()
+	Mouse& Game::getMouse()
 	{
 		return *_mouse;
 	}
 
-	const sf::RenderWindow& GameBase::getWindow() const
+	const sf::RenderWindow& Game::getWindow() const
 	{
 		return _window;
 	}
 
-	void GameBase::handleEvent()
+	void Game::handleEvent()
 	{
 		sf::Event e;
 
@@ -88,7 +93,7 @@ namespace BaseFramework
 		}
 	}
 
-	void GameBase::tryPop()
+	void Game::tryPop()
 	{
 		if (_shouldPop)
 		{
@@ -96,7 +101,7 @@ namespace BaseFramework
 		}
 	}
 
-	StateBase& GameBase::getCurrentState()
+	StateBase& Game::getCurrentState()
 	{
 		return *_states.top();
 	}

@@ -1,14 +1,17 @@
 #include "Entity.h"
 
-Entity::Entity() : _position(sf::Vector2f())
+namespace BaseFramework
 {
-}
+	Entity::Entity() : _position(sf::Vector2f())
+	{
+	}
 
-Entity::~Entity()
-{
-}
+	Entity::~Entity()
+	{
+	}
 
-sf::Vector2f Entity::getPosition()
-{
-    return _position;
+	sf::Vector2f Entity::getPosition()
+	{
+		return _position;
+	}
 }

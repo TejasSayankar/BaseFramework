@@ -3,7 +3,7 @@
 
 namespace BaseFramework
 {
-	class GameBase;
+	class Game;
 
 	class StateBase
 	{
@@ -11,7 +11,7 @@ namespace BaseFramework
 
 		//delete copy constructor and copy assignment
 
-		StateBase(GameBase& game) : _game(&game) {}
+		StateBase(Game& game) : _game(&game) {}
 		StateBase(const StateBase&) = delete;
 		StateBase& operator = (const StateBase&) = delete;
 		virtual ~StateBase() = default;
@@ -22,6 +22,6 @@ namespace BaseFramework
 		//virtual void fixedUpdate(float deltaTime) = 0; ////check it if not necessary remove it
 		virtual void render(sf::RenderTarget& renderTarget) = 0;
 	protected:
-		GameBase* _game;
+		Game* _game;
 	};
 }
