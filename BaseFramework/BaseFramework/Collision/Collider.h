@@ -10,7 +10,7 @@ namespace BaseFramework
 		~Collider();
 
 		sf::Vector2f getPosition() const;
-		//Entity& getEntity();
+		Entity* getEntity() const;
 		void enable();
 		void disable();
 		bool isEnabled() const;

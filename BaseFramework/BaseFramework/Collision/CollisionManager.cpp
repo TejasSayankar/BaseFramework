@@ -5,7 +5,12 @@ namespace BaseFramework
 {
     CollisionManager::~CollisionManager()
     {
-        
+        for (auto colliderIt = _colliders.begin(), end = _colliders.end();
+            colliderIt != end;
+            ++colliderIt)
+        {
+            delete *colliderIt;
+        }
     }
     void CollisionManager::addCollider(Collider* collider)
     {
